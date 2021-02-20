@@ -38,7 +38,10 @@ if __name__ == '__main__':
     )
     opo_ev.start_from()
 
-    v = Visualization(rev.logbook, opo_ev.logbook, expectations)
+    v = Visualization(expectations)
     v.print_logbook(rev.logbook)
     v.print_logbook(opo_ev.logbook)
-    v.visualize_evolution()
+    v.visualize(rev.logbook, opo_ev.logbook, "Random", "OPO")
+
+    v.visualize_ind(rev.logbook, "Random")
+    v.visualize_ind(opo_ev.logbook, "OPO")

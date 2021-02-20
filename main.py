@@ -13,20 +13,18 @@ def expectations(gens):
 
 if __name__ == '__main__':
     np.random.seed(64)
+
     orig_ind = Individual(np.random.uniform(0, 5, 1))
+    timeout = 10
     rev = RandomEvolution(
         orig_ind=orig_ind,
         fitness=Fitness.evaluate,
         generate=Generator.generate_random_from,
         generate_params={"min": 0, "max": 5},
         select=Selector.select_random_ev,
-        timeout=40
+        timeout=timeout
     )
     rev.start_from()
-
-    v_rev = Visualization(rev.logbook, expectations)
-    v_rev.print_logbook()
-    v_rev.visualize_evolution()
 
     opo_ev = OpOEvolution(
         orig_ind=orig_ind,
@@ -36,9 +34,11 @@ if __name__ == '__main__':
         mutate=Mutator.mutate,
         mutate_params={"std": 0.5, "min": 0, "max": 5},
         select=Selector.select_random_ev,
-        timeout=40
+        timeout=timeout
     )
     opo_ev.start_from()
-    v_opo_ev = Visualization(opo_ev.logbook, expectations)
-    v_opo_ev.print_logbook()
-    v_opo_ev.visualize_evolution()
+
+    v = Visualization(rev.logbook, opo_ev.logbook, expectations)
+    v.print_logbook(rev.logbook)
+    v.print_logbook(opo_ev.logbook)
+    v.visualize_evolution()

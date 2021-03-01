@@ -40,3 +40,6 @@ if __name__ == '__main__':
 
     v = Visualization(expectations)
     v.visualize(rev.logbook, opo_ev.logbook, "Random", "OPO")
+
+    v.print_logbook(rev.logbook)
+    v.print_logbook(opo_ev.logbook)

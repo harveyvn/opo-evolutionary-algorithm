@@ -3,8 +3,8 @@
 ## Sample Function:
 \[ f(x) = -x * 8 * x * (x - 3) * (x - 4) \]
 
-## Methods:
-Compare the performance between One-plus-One algorithm vs Random algorithm baseline
+## Study:
+Using the [DEAP Framework](https://deap.readthedocs.io/en/master/) to demonstrate the performance of One-plus-One algorithm and compare it with the baseline Random algorithm.
 ### One-plus-One Algorithm
 1. Set the population size being equal to 1.
 2. Evaluate the population.
@@ -25,7 +25,7 @@ Compare the performance between One-plus-One algorithm vs Random algorithm basel
 ![An Evolutionary Algorithm](plot.png)
 
 ## Result
-Execute the experiment in 15 epochs and see how the algorithm evolved.
+Execute the experiment in 12 epochs and see how the algorithm evolved.
 
 ### One-plus-One Algorithm
 ```

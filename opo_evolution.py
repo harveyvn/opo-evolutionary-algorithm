@@ -45,6 +45,8 @@ class OpOEvolution:
         print("Evaluation time: ", time.time() - start_time)
 
         best_ind = tools.selBest(pop, 1)[FIRST]
+        record = self.mstats.compile(pop)
+        self.logbook.record(gen=0, evals=0, **record)
         # Begin the evolution
         print("Start of evolution")
 

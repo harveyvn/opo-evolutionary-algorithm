@@ -8,23 +8,23 @@ from visualization import Visualization
 
 def expectations(gens):
     # TODO: calculate maximum value for each scenario
-    return [6.248 for _ in range(gens)]
+    return [24.99 for _ in range(gens)]
 
 
 if __name__ == '__main__':
     np.random.seed(64)
 
     orig_ind = Individual(np.random.uniform(0, 5, 1))
-    timeout = 10
+    epoches = 3
     rev = RandomEvolution(
         orig_ind=orig_ind,
         fitness=Fitness.evaluate,
         generate=Generator.generate_random_from,
         generate_params={"min": 0, "max": 5},
         select=Selector.select_random_ev,
-        timeout=timeout
+        timeout=epoches
     )
-    rev.start_from()
+    rev.run()
 
     opo_ev = OpOEvolution(
         orig_ind=orig_ind,
@@ -34,14 +34,9 @@ if __name__ == '__main__':
         mutate=Mutator.mutate,
         mutate_params={"std": 0.5, "min": 0, "max": 5},
         select=Selector.select_random_ev,
-        timeout=timeout
+        timeout=epoches
     )
-    opo_ev.start_from()
+    opo_ev.run()
 
     v = Visualization(expectations)
-    v.print_logbook(rev.logbook)
-    v.print_logbook(opo_ev.logbook)
     v.visualize(rev.logbook, opo_ev.logbook, "Random", "OPO")
-
-    v.visualize_ind(rev.logbook, "Random")
-    v.visualize_ind(opo_ev.logbook, "OPO")
